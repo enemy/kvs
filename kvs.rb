@@ -6,9 +6,10 @@ configure do
   CACHE = Memcached.new
 end
 
-
-def build_key(namespace,key)
-	"#{params[:namespace]}:#{params[:key]}"
+helpers do	
+	def build_key(namespace,key)
+		"#{params[:namespace]}:#{params[:key]}"
+	end
 end
 
 get '/:namespace/:key' do
