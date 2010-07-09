@@ -31,4 +31,8 @@ post '/:namespace/:key' do
   CACHE.set key, value
 end
 
-
+delete '/:namespace/:key' do
+  key = build_key(params[:namespace], params[:key])
+  
+  CACHE.delete key
+end
