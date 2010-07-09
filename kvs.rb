@@ -3,7 +3,7 @@ require 'sinatra'
 
 configure do
   require 'memcached'
-  CACHE = Memcached.new
+  CACHE = Memcached.new :default_ttl => 0
 end
 
 
