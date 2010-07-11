@@ -26,7 +26,7 @@ get '/:namespace/:key' do
   value
 end
 
-post '/:namespace/:key' do
+put '/:namespace/:key' do
   key = build_key(params[:namespace], params[:key])
   value = params[:value]
   

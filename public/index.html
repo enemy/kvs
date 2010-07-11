@@ -2,26 +2,26 @@
 <html lang="en">
 
 	<head>
-		<title>REST Key-Value Store</title>
+		<title>HTTP REST Key-Value Store</title>
 		<meta charset="utf-8" />
 	</head>
 
 	<body>
 	
 		<header>
-			<h1>REST Key-Value Store</h1>
-			<p>Small key-value store built with <a href="http://www.sinatrarb.com/">Sinatra</a> and <a href="http://memcached.org/">Memcached</a>.</p>
+			<h1>HTTP REST Key-Value Store</h1>
+			<p>Small HTTP REST key-value store built with <a href="http://www.sinatrarb.com/">Sinatra</a> and <a href="http://memcached.org/">Memcached</a>.</p>
 		</header>
 
 		<section>
 			<h2>Usage</h2>
 
-			<h3>Create / Update</h3>
-			<code>POST</code> <code>/namespace/key</code>
+			<h3>Create or update</h3>
+			<code>PUT</code> <code>/namespace/key</code>
 			<ul>
 				<li><code>value</code> is given as a parameter.</li>
-				<li>Using <code>PUT</code> to update is not supported, because Memcached does not support atomic get+set operation.</li>
-				<li><code>$ curl -d "value=looooong" kvs.api.enemy.fi/cats/longcat</code></li>
+				<li>Update does not guarantee that key exists, because Memcached does not support atomic get+set operation.  Also, because create or update operations update the full value of the specified key, a <code>PUT</code> operation is required over <code>POST</code>.  See the excellent article "<a href="http://jcalcote.wordpress.com/2008/10/16/put-or-post-the-rest-of-the-story/">PUT or POST: The REST of the Story</a>" by John Calcote.</li>
+				<li><code>$ curl -X PUT -d "value=looooong" kvs.api.enemy.fi/cats/longcat</code></li>
 			</ul>
 
 
