@@ -7,9 +7,9 @@ configure do
 end
 
 helpers do	
-	def build_key(namespace,key)
-		"#{params[:namespace]}:#{params[:key]}"
-	end
+  def build_key(namespace,key)
+    "#{params[:namespace]}:#{params[:key]}"
+  end
 end
 
 get '/:namespace/:key' do
@@ -35,6 +35,10 @@ end
 
 delete '/:namespace/:key' do
   key = build_key(params[:namespace], params[:key])
-  
-  CACHE.delete key
+
+  begin  
+    CACHE.delete key
+  rescue
+    halt 404
+  end
 end
