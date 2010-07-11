@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>REST Key-Value Store</title>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+	
+		<header>
+			<h1>REST Key-Value Store</h1>
+			<p>Small key-value store built with <a href="http://www.sinatrarb.com/">Sinatra</a> and <a href="http://memcached.org/">Memcached</a>.</p>
+		</header>
+
+		<section>
+			<h2>Usage</h2>
+
+			<h3>Create / Update</h3>
+			<code>POST</code> <code>/namespace/key</code>
+			<ul>
+				<li><code>value</code> is given as a parameter.</li>
+				<li>Using <code>PUT</code> to update is not supported, because Memcached does not support atomic get+set operation.</li>
+				<li><code>$ curl -d "value=looooong" kvs.api.enemy.fi/cats/longcat</code></li>
+			</ul>
+
+
+			<h3>Read</h3>
+			<code>GET</code> <code>/namespace/key</code>
+			
+			<ul>
+				<li>If key is not found, then a HTTP <code>404</code> is returned.</li>
+				<li><code>$ curl kvs.api.enemy.fi/cats/longcat</code></li>
+			</ul>
+
+
+			<h3>Delete</h3>
+			<code>DELETE</code> <code>/namespace/key</code>
+			
+			<ul>
+				<li>If key is not found, then a HTTP <code>404</code> is returned.</li>
+				<li><code>$ curl -X DELETE kvs.api.enemy.fi/cats/longcat</code></li>
+			</ul>
+
+		</section>
+
+		<section>
+			<h2>Source code</h2>
+
+			<p>Source code is available at Github: <a href="http://github.com/enemy/kvs">http://github.com/enemy/kvs</a>.</p>
+		</section>
+
+		<footer>
+		</footer>
+
+	</body>
+
+</html>

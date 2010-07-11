@@ -42,3 +42,8 @@ delete '/:namespace/:key' do
     halt 404
   end
 end
+
+get '/' do
+  File.open('public/index.html').read
+end
+
