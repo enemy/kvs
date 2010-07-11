@@ -20,6 +20,7 @@ get '/:namespace/:key' do
   begin
   	value = CACHE.get key
   rescue
+	halt 404
   end
   
   value
